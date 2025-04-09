@@ -28,7 +28,7 @@ def create_user(user: CreateUserRequest, db: Session) -> CreateUserResponse:
     search_result = find_user_by_email(user.email, db)
     if search_result is not None:
         raise HTTPException(
-            status_code=409, detail="An user with this email address already exists"
+            status_code=409, detail="A user with this email address already exists"
         )
 
     new_user = User(
