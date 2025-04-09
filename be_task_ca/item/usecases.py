@@ -1,10 +1,9 @@
-from typing import List
 from fastapi import HTTPException
 
 from .repository import find_item_by_name, get_all_items, save_item
 
 from .model import Item
-from .schema import AllItemsRepsonse, CreateItemRequest, CreateItemResponse
+from .schema import AllItemsResponse, CreateItemRequest, CreateItemResponse
 from sqlalchemy.orm import Session
 
 
@@ -26,9 +25,9 @@ def create_item(item: CreateItemRequest, db: Session) -> CreateItemResponse:
     return model_to_schema(new_item)
 
 
-def get_all(db: Session) -> List[CreateItemResponse]:
+def get_all(db: Session) -> AllItemsResponse:
     item_list = get_all_items(db)
-    return AllItemsRepsonse(items=list(map(model_to_schema, item_list)))
+    return AllItemsResponse(items=list(map(model_to_schema, item_list)))
 
 
 def model_to_schema(item: Item) -> CreateItemResponse:
