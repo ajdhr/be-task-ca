@@ -8,7 +8,7 @@ class CreateUserRequest(BaseModel):
     last_name: str
     email: str
     password: str
-    shipping_address: str | None
+    shipping_address: str
 
 
 class CreateUserResponse(BaseModel):
